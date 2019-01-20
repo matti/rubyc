@@ -11,8 +11,10 @@ if [ "${RUBYC_CPUS}" = "" ]; then
 fi
 
 if [ "${RUBYC_GEM}" != "" ]; then
+  cd /tmp
   gem unpack "${RUBYC_GEM}"
-  mv ${RUBYC_GEM}-* /gem
+  cp -R /tmp/${RUBYC_GEM}*/* /gem
+  ls -la /gem
 else
   :
 fi

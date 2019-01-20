@@ -15,9 +15,9 @@ services:
   gemtest:
     build: .
     environment:
-      - RUBYC_GEM=kontena
-      - RUBYC_ENTRYPOINT=kontena
-      - RUBYC_OUTPUT=kontena
+      - RUBYC_GEM=whoamid
+      - RUBYC_ENTRYPOINT=whoamid
+      - RUBYC_OUTPUT=whoamid
     volumes:
       - cache_gemtest:/cache
       - gem_gemtest:/gem

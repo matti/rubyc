@@ -55,7 +55,7 @@ s.get "/gem" do
   puts "stdout joined"
   stderr_reader_thr.kill
 
-  send_file File.join "/gem/", params["RUBYC_GEM"]
+  send_file File.join("/build/", params["RUBYC_GEM"])
 end
 
 s.run!

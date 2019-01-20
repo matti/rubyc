@@ -36,7 +36,7 @@ mkdir -p /cache
 cd /gem
 
 exec rubyc --openssl-dir=/etc/ssl \
-      -o "${RUBYC_OUTPUT}" \
+      -o /build/"${RUBYC_OUTPUT}" \
       -d /cache \
       --make-args="-j${RUBYC_CPUS}" \
       "${RUBYC_ENTRYPOINT}"

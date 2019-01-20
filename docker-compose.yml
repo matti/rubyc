@@ -5,6 +5,8 @@ services:
     build: .
     volumes:
       - cache_server:/cache
+      - gem_server:/gem
+      - ./.builds/server:/build
     environment:
       - RUBYC_SERVER=true
     ports:
@@ -18,12 +20,14 @@ services:
       - RUBYC_OUTPUT=kontena
     volumes:
       - cache_gemtest:/cache
-
+      - gem_gemtest:/gem
+      - ./.builds/gemtest:/build
   rubyctest:
     build: .
     volumes:
       - ./rubyctest:/gem
       - cache_rubyctest:/cache
+      - ./.builds/rubyctest:/build
     environment:
       - RUBYC_ENTRYPOINT=rubyctest
       - RUBYC_OUTPUT=rubyctest
@@ -38,3 +42,9 @@ volumes:
   cache_rubyctest:
     external:
       name: rubyc_cache_rubyctest
+  gem_gemtest:
+    external:
+      name: rubyc_gem_gemtest
+  gem_server:
+    external:
+      name: rubyc_gem_server

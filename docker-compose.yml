@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  server:
+    build: .
+    volumes:
+      - cache_server:/cache
+    environment:
+      - RUBYC_SERVER=true
+    ports:
+      - 8080:8080
+
+  gemtest:
+    build: .
+    environment:
+      - RUBYC_GEM=kontena
+      - RUBYC_ENTRYPOINT=kontena
+      - RUBYC_OUTPUT=kontena
+    volumes:
+      - cache_gemtest:/cache
+
+  rubyctest:
+    build: .
+    volumes:
+      - ./rubyctest:/gem
+      - cache_rubyctest:/cache
+    environment:
+      - RUBYC_ENTRYPOINT=rubyctest
+      - RUBYC_OUTPUT=rubyctest
+
+volumes:
+  cache_server:
+    external:
+      name: rubyc_cache_server
+  cache_gemtest:
+    external:
+      name: rubyc_cache_gemtest
+  cache_rubyctest:
+    external:
+      name: rubyc_cache_rubyctest

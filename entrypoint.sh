@@ -1,6 +1,10 @@
 #!/usr/bin/env sh
 set -e
 
+mkdir -p /gem
+mkdir -p /cache
+mkdir -p /build
+
 if [ "${RUBYC_SERVER}" = "true" ]; then
   cd /app
   exec ruby app.rb
@@ -34,7 +38,6 @@ if [ "${RUBYC_URL}" != "" ]; then
   chmod +x /usr/local/bin/rubyc
 fi
 
-mkdir -p /cache
 cd /gem
 
 exec rubyc --openssl-dir=/etc/ssl \
